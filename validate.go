@@ -108,7 +108,6 @@ func ValidateUSCI(code string) bool {
 		}
 
 		// 校验统一社会信用代码校验码
-
 		// 统一社会信用代码中不使用I, O, S, V, Z
 		socialCreditCheckCodes := map[string]int{
 			"0": 0,
@@ -262,10 +261,8 @@ func ValidateBuidlingCode(code string) bool {
 		return false
 	}
 
-	if strings.Count(code, "T") > 0 {
-		if len(code) != len(strings.ReplaceAll(code, "T", ""))+1 {
-			return false
-		}
+	if strings.Count(code, "T") > 1 {
+		return false
 	}
 
 	if v, err := regexp.MatchString("^[1-9][0-9T]+$", code); err == nil {
